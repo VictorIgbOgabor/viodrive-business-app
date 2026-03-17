@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Outfit:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink:          #0E0C0A;
+  --carbon:       #1A1714;
+  --surface:      #231F1B;
+  --ember:        #E8450A;
+  --ember-light:  #FF6B35;
+  --sand:         #F5EFE6;
+  --sand-dim:     #D9CEBC;
+  --chrome:       #C8C4BC;
+  --border:       rgba(255,255,255,0.06);
+  --border-ember: rgba(232,69,10,0.2);
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+html, body {
+  background-color: var(--ink);
+  color:            var(--sand);
+  font-family:      'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--carbon); }
+::-webkit-scrollbar-thumb { background: var(--surface); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ember); }
+
+/* ── Typography ── */
+h1, h2, h3 {
+  font-family:    'Unbounded', sans-serif;
+  font-weight:    900;
+  letter-spacing: -0.03em;
+  line-height:    1.1;
+}
+
+/* ── Utility Classes ── */
+.glass {
+  background:         rgba(26,23,20,0.85);
+  backdrop-filter:    blur(12px);
+  border:             1px solid var(--border);
+}
+
+.card {
+  background:    var(--carbon);
+  border:        1px solid var(--border);
+  border-radius: 16px;
+  padding:       20px;
+}
+
+.card-ember {
+  background:    var(--carbon);
+  border:        1px solid var(--border-ember);
+  border-radius: 16px;
+  padding:       20px;
+}
+
+.input-base {
+  width:           100%;
+  background:      var(--carbon);
+  border:          1px solid rgba(255,255,255,0.08);
+  border-radius:   10px;
+  padding:         12px 16px;
+  color:           var(--sand);
+  font-family:     'Outfit', sans-serif;
+  font-size:       14px;
+  outline:         none;
+  transition:      border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-base::placeholder { color: var(--chrome); }
+.input-base:focus {
+  border-color: var(--ember);
+  box-shadow:   0 0 0 3px rgba(232,69,10,0.12);
+}
+
+.btn-primary {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             8px;
+  background:      var(--ember);
+  color:           var(--sand);
+  font-family:     'Outfit', sans-serif;
+  font-size:       14px;
+  font-weight:     600;
+  padding:         12px 20px;
+  border-radius:   10px;
+  border:          none;
+  cursor:          pointer;
+  transition:      background 0.2s, transform 0.1s;
+  text-decoration: none;
+  white-space:     nowrap;
+}
+
+.btn-primary:hover    { background: var(--ember-light); }
+.btn-primary:active   { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-ghost {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             8px;
+  background:      transparent;
+  color:           var(--sand);
+  font-family:     'Outfit', sans-serif;
+  font-size:       14px;
+  font-weight:     500;
+  padding:         12px 20px;
+  border-radius:   10px;
+  border:          1px solid rgba(255,255,255,0.1);
+  cursor:          pointer;
+  transition:      border-color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255,255,255,0.2);
+  background:   rgba(255,255,255,0.04);
+}
+
+.btn-ghost:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Badges ── */
+.badge             { display: inline-flex; align-items: center; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+.badge-pending     { background: rgba(200,196,188,0.1); color: var(--chrome); }
+.badge-assigned    { background: rgba(245,239,230,0.08); color: var(--sand-dim); border: 1px solid rgba(255,255,255,0.06); }
+.badge-in_transit  { background: rgba(232,69,10,0.15); color: var(--ember-light); }
+.badge-delivered   { background: rgba(100,200,100,0.12); color: #78C87A; }
+.badge-cancelled   { background: rgba(255,80,80,0.1); color: #FF7070; }
+.badge-returned    { background: rgba(200,100,50,0.12); color: #E09060; }
+.badge-picked_up   { background: rgba(232,69,10,0.12); color: var(--ember-light); }
+.badge-arrived     { background: rgba(245,239,230,0.08); color: var(--sand-dim); }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.4s ease forwards; }
+
+.spinner {
+  width:        20px;
+  height:       20px;
+  border:       2px solid rgba(255,255,255,0.15);
+  border-top-color: var(--ember);
+  border-radius: 50%;
+  animation:    spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
